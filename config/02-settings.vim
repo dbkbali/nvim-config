@@ -88,3 +88,4 @@ set cmdheight=2
 set updatetime=3000
 set shortmess+=c
 set signcolumn=yes
+set tags=tags

@@ -30,7 +30,6 @@ endif
   Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'maximbaz/lightline-ale'
-  Plug 'ryanoasis/vim-devicons'
 
 
   " 'ide' stuff
@@ -53,4 +52,6 @@ endif
   Plug 'mxw/vim-jsx'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'jparise/vim-graphql'
+  Plug 'ryanoasis/vim-devicons'
+
 call plug#end()

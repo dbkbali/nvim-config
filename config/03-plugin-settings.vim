@@ -39,6 +39,8 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nnoremap <C-p> :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>h :History<CR>
+"set -gx FZF_DEFAULT_COMMAND  'rg --files --no-ignore-vcs --hidden'
+
 
 " GITGUTTER
 
@@ -67,3 +69,7 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Vim emoji
 set completefunc=emoji#complete
+
+" NERDTree devicons
+set guifont=DroidSansMono\ Nerd\ Font:h11
+
