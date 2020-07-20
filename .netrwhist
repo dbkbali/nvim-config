@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/dbk/Development'
+let g:netrw_dirhist_4='/Users/dbk/Development/hacker-stories'
 let g:netrw_dirhist_3='/Users/xm381qw/Dev/pfm-api'
 let g:netrw_dirhist_2='/Users/xm381qw/Dev'
 let g:netrw_dirhist_1='/Users/xm381qw/Dev/pfm-api'

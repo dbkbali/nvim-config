@@ -1,17 +1,28 @@
-let mapleader=","
+let mapleader="\<SPACE>"
+let g:user_emmet_leader_key=','
 
 filetype plugin on
 
 set history=1000
 set undolevels=1000
+set showmatch           " Show matching brackets.
 
 set hidden
 set nowrap
 set ignorecase
 set showmatch
 
-set hlsearch
+" Incrementally search while typing
 set incsearch
+" Use smart case for searching
+set ignorecase
+set smartcase
+" Highlight searches
+set hlsearch
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 
 set visualbell
 set noerrorbells
@@ -25,6 +36,7 @@ set nobackup
 set noswapfile
 
 set ruler               " Show the line and column numbers of the cursor.
+set relativenumber
 set number
 set formatoptions+=o    " Continue comment marker in new lines.
 set textwidth=0         " Hard-wrap long lines as you type them.
@@ -40,13 +52,36 @@ endif
 if !&sidescrolloff
   set sidescrolloff=5   " Show next 5 columns while side-scrolling.
 endif
+set nostartofline       " Do not jump to first character with page commands.
+hi EoLSpace ctermbg=238 guibg=#333333
+match EoLSpace /\s\+$/
+" Tell Vim which characters to show for expanded TABs,
+" trailing whitespace, and end-of-lines. VERY useful!
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+set list                " Show problematic characters.
+
+" Also highlight all tabs and trailing whitespace characters.
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$\|\t/
+
+set gdefault            " Use 'g' flag by default with :s/foo/bar/.
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+" Search and Replace
+nmap <Leader>s :%s//g<Left><Left>
 
 set mouse=a
 
 set laststatus=2
 set t_Co=256
 syntax on
-color dracula
+color onedark
 
 "use relative lines unless focus lost
 autocmd FocusLost * :set number
@@ -54,12 +89,18 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd CursorMoved * :set relativenumber
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" Relative numbering
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set nornu
+    set number
+  else
+    set rnu
+  endif
+endfunc
+
+" Toggle between normal and relative numbering.
+nnoremap <leader>r :call NumberToggle()<cr>
 
 let g:indentLine_color_term = 68
 let g:indentLine_leadingSpaceEnabled = 0
@@ -80,12 +121,10 @@ endif
 
 " Leader key is like a command prefix.
 nnoremap <SPACE> <Nop>
-let mapleader=","
 let maplocalleader='\'
 imap jk <Esc>
 
-set cmdheight=2
-set updatetime=3000
-set shortmess+=c
-set signcolumn=yes
 set tags=tags
+
+nnoremap ; :    " Use ; for commands.
+nnoremap Q @q   " Use Q to execute default register.

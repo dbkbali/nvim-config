@@ -24,7 +24,7 @@ endif
   Plug 'galooshi/vim-import-js', { 'do': 'npm install -g import-js' }
 
   " Theme
-  Plug 'dracula/vim'
+  Plug 'joshdick/onedark.vim'
 
   " Layout
   Plug 'airblade/vim-gitgutter'
